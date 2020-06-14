@@ -176,3 +176,27 @@ spring-demo-annotations
 B38
 
 Java Annotations
+
+Создаем проект в котором будем использовать java анотации
+
+B39
+
+B40
+
+Переписываем конфиг файл, прописываем расположение файлов спринга. 
+
+	<context:component-scan base-package="org.sevod.springdemo"></context:component-scan>
+
+Теперь Спринг будет сканировать это место при компиляции.
+
+B41
+@Component анотация
+
+В классе TennisCoach создаем анотацию @Component("thatSillyCoach")
+
+Создаем класс для тестов AnnotationDemodApp. 
+Создаем контекст
+ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+получаем наш бин
+Coach theCoach = context.getBean("thatSillyCoach", Coach.class);
+и теперь можем использовать theCoach.
