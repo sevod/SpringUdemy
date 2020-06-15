@@ -217,3 +217,20 @@ B43
 		Coach theCoach = context.getBean("tennisCoach", Coach.class);
 
 ----------------------------------
+
+B44
+
+@Autowired
+Имеет три типа Injections
+
+-Constructor Injection
+-Setter Injection
+-Field Injections
+
+B45
+
+Constructor Injection @Autowired
+
+B46
+
+------------------------------------
