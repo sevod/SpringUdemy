@@ -2,3 +2,12 @@
 @Component - определяет бин
 @Autowired - Dependency Injection
 @Qualifier("someBean") задает ID бина которое нужно использовать
+@Scope("prototype") - скоп прототайп. По умолчанию singlton
+
+@PostConstruct - метод после создания бина
+@PreDestroy - метод перед удалением бина
+
+определяем расположение конфигурации спринга без xml файла
+@Configuration
+@ComponentScan("org.sevod.springdemo")
+AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);

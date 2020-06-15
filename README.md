@@ -171,7 +171,7 @@ init-method="doMyStartupStuff"
 Все что выше в другом репозитории
 
 ------------------------
-spring-demo-annotations
+Spring-demo-annotations
 -------------------------
 B38
 
@@ -259,6 +259,7 @@ Methods Injection
 @Autowired
 
 В TennisCoach меняем setter метод, на произвольный
+
 ----------------------------------------
 
 B50
@@ -272,6 +273,7 @@ B51
 В TennisCoach делаем injection прямо над полем
 @Autowired
 private FortuneService fortuneService;
+
 ---------------------------------------------
 
 B52
@@ -300,4 +302,49 @@ private FortuneService fortuneService;
 B55
 
 небольшая практика с rnd в randomFortuneService
+
 ------------------------------------------------
+
+B56
+
+@Scope 
+
+Default singleton
+@Scope("prototype")
+
+B57
+
+@Component
+@Scope("prototype")
+
+--------------------------------------------------
+
+B58
+
+Bean Lifecycle
+
+Определяем методы для бина
+@PostConstruct - после создания
+@PreDestroy - перед удалением
+
+B59
+
+-----------------------------------------------------
+
+B60
+
+Spring Configuration with Java Code (no xml)
+
+@Configuration
+тут java класс
+@ComponentScan("org.sevod.springdemo") (опционально) адрес пакета где все искать
+
+AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+а так мы создаем контекст
+
+B61
+
+Создаем класс SportConfig, все настраиваем в нем
+Добавляем класс JavaConfigDemoApp
+
+
