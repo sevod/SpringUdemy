@@ -10,13 +10,13 @@ public class TennisCoach implements Coach {
 	
 	// define a default constructor
 	public TennisCoach() {
-		System.out.println(">> TennisCoach: insude default constructor");
+		System.out.println(">> TennisCoach: inside default constructor");
 	}
 	
 	// define a setter method
 	@Autowired
-	public void setFortuneService(FortuneService fortuneService) {
-		System.out.println(">> TennisCoach: insude setFortuneService()");
+	public void doSomeCrazyStuff(FortuneService fortuneService) {
+		System.out.println(">> TennisCoach: inside doSomeCrazyStuff()");
 		this.fortuneService = fortuneService;
 	}	
 	
