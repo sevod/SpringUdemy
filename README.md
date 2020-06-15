@@ -200,3 +200,20 @@ ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("app
 получаем наш бин
 Coach theCoach = context.getBean("thatSillyCoach", Coach.class);
 и теперь можем использовать theCoach.
+
+---------------------------
+
+B42
+
+@Components - Default Names
+по умолчанию имена бинов, одинаковы с названием классов но начинаютс маленькой буквы
+
+B43
+
+Изменим TennisCoach класс.
+В строке @Component("thatSillyCoach") оставляем только анотацию @Component
+
+меняем код для вызова этого бина
+		Coach theCoach = context.getBean("tennisCoach", Coach.class);
+
+----------------------------------
