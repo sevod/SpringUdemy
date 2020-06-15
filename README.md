@@ -251,13 +251,53 @@ B48
 	}
 	
 ---------------------------------------
+
 B49
+
 Methods Injection
 Инжектить можно любые методы
 @Autowired
 
 В TennisCoach меняем setter метод, на произвольный
-
 ----------------------------------------
 
+B50
 
+Field injection
+
+@Autowired используем прямо над нужным полем
+
+B51
+
+В TennisCoach делаем injection прямо над полем
+@Autowired
+private FortuneService fortuneService;
+---------------------------------------------
+
+B52
+
+---------------------------------------------
+
+B53
+
+Qualifiers for DI
+
+Если возникает непоределенность можно использовать анотацию @Qualifier
+@Autowired
+@Qualifier("someBean")
+и название внутри нее - "someBean", четко указывая какой бин использовать
+
+B54
+
+Для создания непоределенности добавляем классов FortuneService, теперь их 4. При запуске приложения получаем ошибку, что у нас их 4 и не понятно который использовать.
+
+Меняем код. Добавляем @Qualifier("happyFortuneService"). Ошибки нет, используется happyFortuneService
+
+@Autowired
+@Qualifier("happyFortuneService")
+private FortuneService fortuneService;
+
+B55
+
+небольшая практика с rnd в randomFortuneService
+------------------------------------------------

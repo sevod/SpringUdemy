@@ -1,4 +1,4 @@
 
 @Component - определяет бин
-
 @Autowired - Dependency Injection
+@Qualifier("someBean") задает ID бина которое нужно использовать
