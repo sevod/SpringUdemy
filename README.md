@@ -202,6 +202,7 @@ Coach theCoach = context.getBean("thatSillyCoach", Coach.class);
 и теперь можем использовать theCoach.
 
 ---------------------------
+15.06.2020
 
 B42
 
@@ -234,3 +235,20 @@ Constructor Injection @Autowired
 B46
 
 ------------------------------------
+
+B47
+
+Setter Injection @Autowired
+
+B48
+
+В TennisCoach меняем Constructor injection на setter injection
+Обязательно создаем пустой конструктор.
+создаем сетер и анотацию над ним
+	@Autowired
+	public void setFortuneService(FortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
+	
+---------------------------------------
+

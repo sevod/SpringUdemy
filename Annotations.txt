@@ -1,4 +1,4 @@
 
-@Components - определяет бин
+@Component - определяет бин
 
 @Autowired - Dependency Injection
