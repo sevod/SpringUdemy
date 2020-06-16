@@ -384,4 +384,32 @@ sadFortuneService явлется как назавнием метода, так 
 
 -------------------------------------------------------------
 
+B65
 
+Injecting Values frome Properties File
+
+@PropertySource("classpath:sport.properties") - подключем файл со свойствами
+
+@Value("${foo.email}")
+private String email;
+
+B66
+
+Создаем properties файл sport.properties
+Загружаем этот файл в спринг конфиг(SportConfig.java) @PropertySource("classpath:sport.properties")
+
+B67
+
+В файл SwimCoach добавляем код
+
+	@Value("${foo.email}")
+	private String email;
+	
+	@Value("foo.team")
+	private String team;
+
+создаем гетеры
+
+правим и используем SwimJavaConfigDemoApp
+
+----------------------------------------------------------------------

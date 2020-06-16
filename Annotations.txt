@@ -12,4 +12,9 @@
 @ComponentScan("org.sevod.springdemo")
 AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 
-@Bean
+@Bean - задет бин. Назавние бина соответсвует названию метода.
+
+@PropertySource("classpath:sport.properties") - подключем файл со свойствами
+
+@Value("${foo.email}")
+private String email;
