@@ -18,3 +18,10 @@ AnnotationConfigApplicationContext context = new AnnotationConfigApplicationCont
 
 @Value("${foo.email}")
 private String email;
+
+---
+MVC
+---
+
+@Controller - контролер в MVC
+@RequestMapping("/") - Анотация, которая перенаправляет входящие запросы на наши ява методы
