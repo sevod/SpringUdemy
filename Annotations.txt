@@ -11,3 +11,5 @@
 @Configuration
 @ComponentScan("org.sevod.springdemo")
 AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+
+@Bean

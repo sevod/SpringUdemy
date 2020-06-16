@@ -347,4 +347,41 @@ B61
 Создаем класс SportConfig, все настраиваем в нем
 Добавляем класс JavaConfigDemoApp
 
+--------------------------------------------------
+
+B62
+
+Define Bean whith Java Code
+
+@Bean
+
+B63
+
+создаем SwimCoach
+
+B64
+
+работаем в SportConfig.java
+
+	// define bean for our sad fortune service
+	@Bean
+	public FortuneService sadFortuneService() {
+		return new SadFortuneService();
+	}
+	
+	// define bean for our swim coach AND inject dependency
+	
+	@Bean
+	public Coach swimCoach() {
+		return new SwimCoach(sadFortuneService());
+	}
+	
+sadFortuneService явлется как назавнием метода, так и названием бина!
+
+Создаем SwimJavaConfigDemoApp
+
+В файле SportConfig.java коментируем строку //@ComponentScan("org.sevod.springdemo") посколько все исползуемые нами бины, мы прописали тут вручную
+
+-------------------------------------------------------------
+
 
