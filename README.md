@@ -524,5 +524,27 @@ MVC 84
 
 Reading HTML From Data whith @RequestParam Annotation
 
+Все тоже самое что и выше, но используем другой код.
+
+MVC 85
+
+@RequestMapping("/processFormVersionThree")
+	public String processFormVersionThree(@RequestParam("studentName") String theName, Model model) {		
+	
+		// convert the data to all caps		
+		theName = theName.toUpperCase();
+		
+		// create the message
+		String result = "Hey My Friend from v3! " + theName;
+		
+		// add message to the model
+		model.addAttribute("message", result);
+		
+		
+		return "helloworld";
+	}
+	
+--------------------------------------------------------------------
+
 
 

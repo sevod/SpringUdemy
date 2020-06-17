@@ -26,4 +26,4 @@ MVC
 @Controller - контролер в MVC
 @RequestMapping("/") - Анотация, которая перенаправляет входящие запросы на наши ява методы
 
-@RequestParam
+@RequestParam можно напрямую с html формы данные передавать в spring
