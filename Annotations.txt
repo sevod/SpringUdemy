@@ -27,3 +27,11 @@ MVC
 @RequestMapping("/") - Анотация, которая перенаправляет входящие запросы на наши ява методы
 
 @RequestParam можно напрямую с html формы данные передавать в spring
+
+@ModelAttribute("student") можно в контролер передавать данные 
+
+	@RequestMapping("/processForm")
+	public String processForm(@ModelAttribute("student") Student theStudent) {
+		
+		return "student-confirmation";
+	}

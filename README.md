@@ -548,7 +548,7 @@ MVC 85
 
 MVC 86
 
-Add controller @RequestMapping
+Add to controller @RequestMapping
 До этого мы все это использовали на методы, а не на классы
 Если использовать на класс, то получается вложенная структура. Родительский на класс и дочерний на методах
 
@@ -566,3 +566,62 @@ MVC 88
 
 -----------------------------------------------------------------
 
+MVC 89
+
+Spring MVC Form Tags
+
+Overview
+
+--------------------------------------------
+
+19.06.2020
+
+MVC 90
+
+Text fields tags
+
+@ModelAttribute("student") такой же "student" должен/может быть и в jsp
+
+MVC 91
+
+Создаем новый клас Student
+Создаем StudentController
+-в контролере в Model добавляем объект Student
+
+MVC 92
+
+создаем вью файл student-form.jsp
+первая строка <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+создаем форму
+	<form:form action="processForm" modelAttribute="student">
+	
+		First name: <form:input path="firstName"/>
+	
+		<br><br>
+		
+		Last name: <form:input path="lastName"/>
+	
+		<br><br>
+	
+		<input type="submit" value="Submit" />
+	
+	</form:form>
+На нашем классе,
+Когда форма загружается вызываются методы student.getFirstName() и student.getLastName() 
+Когда форма отправляется вызываются методы student.setFirstName() и student.setLastName() 
+
+Данные с нашей формы попадут в следующий код	@RequestMapping("/processForm")
+	public String processForm(@ModelAttribute("student") Student theStudent) {
+		
+		//log the input data
+		System.out.println(theStudent.getFirstName());
+		System.out.println(theStudent.getLastName());
+		return "student-confirmation";
+	}
+
+MVC 93
+
+создаем страницу student-confirmation.jsp 
+${student.firstName} ${student.lastName}  данные конструкции обращаются к методам класса Student
+
+-----------------------------------------------
