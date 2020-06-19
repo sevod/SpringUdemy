@@ -625,3 +625,41 @@ MVC 93
 ${student.firstName} ${student.lastName}  данные конструкции обращаются к методам класса Student
 
 -----------------------------------------------
+
+MVC 94
+
+Drop Down List
+
+MVC 95
+
+Правим вью страницу student-form
+
+		<form:select path="country">
+		
+			<form:option value="Brazil" label="Brazil" />
+			<form:option value="France" label="France" />
+			<form:option value="Germany" label="Germany" />
+			<form:option value="India" label="India" />
+		
+		</form:select>
+		
+В клас Student добавляем country и get и set методы
+
+В страницу student-confirmation добавляем
+Country: ${student.country}
+
+MVC 96
+
+сделаем добавлаение списка, из кода
+
+в Student добавляем поле private LinkedHashMap<String, String> countryOptions;
+
+Правим форму в student-form
+
+		<form:select path="country">
+		
+			<form:options items="${student.countryOptions}" />
+		
+		</form:select>
+
+-----------------------------------------------
