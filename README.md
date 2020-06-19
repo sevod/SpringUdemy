@@ -663,3 +663,28 @@ MVC 96
 		</form:select>
 
 -----------------------------------------------
+
+MVC 97
+
+Radio Buttons
+
+MVC 98
+
+Изменяем student-form
+
+		Java <form:radiobutton path="favoriteLanguage" value="Java"/>
+		C# <form:radiobutton path="favoriteLanguage" value="C#"/>
+		PHP <form:radiobutton path="favoriteLanguage" value="PHP"/>
+		Ruby <form:radiobutton path="favoriteLanguage" value="Ruby"/>
+		
+добавляем в класс Student строку private String favoriteLanguage;
+и создаем get and set methods
+
+обновляем вью student-confirmation
+Favorite Language: ${student.favoriteLanguage}
+
+-------------------------------------------------------
+
+
+
+
