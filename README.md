@@ -685,6 +685,37 @@ Favorite Language: ${student.favoriteLanguage}
 
 -------------------------------------------------------
 
+MVC 99
 
+Check Box
 
+MVC 100
+
+Изменяем student-form
+
+		Operating Systems:
+		
+		Linux <form:checkbox path="operationgSystems" value="Linux"/>
+		Mac OS <form:checkbox path="operationgSystems" value="Mac OS"/>
+		MS Windows <form:checkbox path="operationgSystems" value="MS Windows"/>
+		
+
+добавляем в класс Student строку 
+private String[] operationgSystems;
+
+	
+В student-confirmation добавляем код
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
+	Operating Systems
+	
+	<ul>
+		<c:forEach var="temp" items="${student.operationgSystems}">
+			<li>${temp}</li>
+		</c:forEach>
+	</ul>
+	
+MVC 101
+
+--------------------------------------
 

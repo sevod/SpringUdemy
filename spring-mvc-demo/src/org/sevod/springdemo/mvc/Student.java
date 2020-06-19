@@ -13,6 +13,8 @@ public class Student {
 	
 	private String favoriteLanguage;
 	
+	private String[] operationgSystems;
+	
 	public Student() {
 		
 		// populate country options: used ISO country code
@@ -60,8 +62,16 @@ public class Student {
 
 	public void setFavoriteLanguage(String favoriteLanguage) {
 		this.favoriteLanguage = favoriteLanguage;
-	}		
-	
-	
+	}
+
+	public String[] getOperationgSystems() {
+		return operationgSystems;
+	}
+
+	public void setOperationgSystems(String[] operationgSystems) {
+		this.operationgSystems = operationgSystems;
+	}
+
+
 	
 }
