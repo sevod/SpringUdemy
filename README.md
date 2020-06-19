@@ -1,4 +1,4 @@
-# SpringUdemy
+# SpringUdemy конспект
 11.06.2020
 IoC Injection of Controll
 
@@ -487,4 +487,141 @@ MVC 79
 Нам известно что после отправки формы будет запрос processForm от браузера
 Так же в браузере будут доступны параметры из предыдущей формы ${param.studentName}
 
+MVC 80
+
+Проверяем все
+
 ---------------------------------------------------------------
+
+MVC 81
+
+Adding Data to the Spring Model
+
+MVC 82
+
+Правим код в HelloWorldController
+
+@RequestMapping("/processFormVersionTwo")
+	public String letsShoutDude(HttpServletRequest request, Model model) {
+		
+		//read the request parameter from the HTML form
+		String theName = request.getParameter("studentName");
+		
+		// convert the data to all caps		
+		theName = theName.toUpperCase();
+		
+		// create the message
+		String result = "Yo! " + theName;
+		
+		// add message to the model
+		model.addAttribute("message", result);
+
+MVC 83
+
+---------------------------------------------------------------
+
+MVC 84
+
+Reading HTML From Data whith @RequestParam Annotation
+
+Все тоже самое что и выше, но используем другой код.
+
+MVC 85
+
+@RequestMapping("/processFormVersionThree")
+	public String processFormVersionThree(@RequestParam("studentName") String theName, Model model) {		
+	
+		// convert the data to all caps		
+		theName = theName.toUpperCase();
+		
+		// create the message
+		String result = "Hey My Friend from v3! " + theName;
+		
+		// add message to the model
+		model.addAttribute("message", result);
+		
+		
+		return "helloworld";
+	}
+	
+--------------------------------------------------------------------
+
+MVC 86
+
+Add to controller @RequestMapping
+До этого мы все это использовали на методы, а не на классы
+Если использовать на класс, то получается вложенная структура. Родительский на класс и дочерний на методах
+
+MVC 87
+
+Создаем SillyController и создаем конфиликтную ситуацию с ранее сущесвовавшим контролером
+
+MVC 88
+
+Меняем HelloWorldController
+@Controller
+@RequestMapping("/hello")
+
+и теперь все адреса будут начинаться с /hello и конфликта больше нет
+
+-----------------------------------------------------------------
+
+MVC 89
+
+Spring MVC Form Tags
+
+Overview
+
+--------------------------------------------
+
+19.06.2020
+
+MVC 90
+
+Text fields tags
+
+@ModelAttribute("student") такой же "student" должен/может быть и в jsp
+
+MVC 91
+
+Создаем новый клас Student
+Создаем StudentController
+-в контролере в Model добавляем объект Student
+
+MVC 92
+
+создаем вью файл student-form.jsp
+первая строка <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+создаем форму
+	<form:form action="processForm" modelAttribute="student">
+	
+		First name: <form:input path="firstName"/>
+	
+		<br><br>
+		
+		Last name: <form:input path="lastName"/>
+	
+		<br><br>
+	
+		<input type="submit" value="Submit" />
+	
+	</form:form>
+На нашем классе,
+Когда форма загружается вызываются методы student.getFirstName() и student.getLastName() 
+Когда форма отправляется вызываются методы student.setFirstName() и student.setLastName() 
+
+Данные с нашей формы попадут в следующий код	@RequestMapping("/processForm")
+	public String processForm(@ModelAttribute("student") Student theStudent) {
+		
+		//log the input data
+		System.out.println(theStudent.getFirstName());
+		System.out.println(theStudent.getLastName());
+		return "student-confirmation";
+	}
+
+MVC 93
+
+создаем страницу student-confirmation.jsp 
+${student.firstName} ${student.lastName}  данные конструкции обращаются к методам класса Student
+
+-----------------------------------------------
