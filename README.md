@@ -719,3 +719,97 @@ MVC 101
 
 --------------------------------------
 
+20.06.2020
+
+MVC 102
+
+Spring Form Validation
+----------------------------
+
+MVC 103
+
+Java's standard Bean Validation API
+Будем использовать Hibernate
+
+MVC 104
+
+www.hibernate.org
+Hibernate Validator - скачиваем
+копируем из архива файлы в наш проект
+
+MVC 105
+
+Validation rule
+
+@NotNull(message="message for errore")
+@Size(min=1, messge="message for errore")
+private String lastName;
+
+в html добавляем
+<form:errors path="lastName" cssClass="error" />
+
+так же меняется "возвратная страница" /processForm, в ней можно контролировать ошибку тегом @Valid
+
+MVC 106
+
+Создаем новый класс Customer
+в нем анотации
+
+	@NotNull(message="is required")
+	@Size(min=1)	
+	private String lastName;
+
+MVC 107
+
+создаем новое вью customer-form
+
+MVC 108
+
+Создаем новый класс CustomerController
+
+
+MVC 109
+
+Дописываем CustomerController
+	
+	@RequestMapping("/processForm")
+	public String processForm(
+			@Valid @ModelAttribute("customer") Customer theCustomer,
+			BindingResult theBindingResult) {
+		
+		if (theBindingResult.hasErrors()) {
+			return "customer-form";
+		}else {
+			return "customer-confirmation";			
+		}
+		
+	}
+
+
+MVC 110
+
+создаем customer-confirmation.jsp
+
+MVC 111
+
+Problem white space
+
+MVC 112
+
+@InitBinder
+
+MVC 113
+
+добавляем код который будет удалять пробелы
+
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+	}
+
+---------------------------------------
+
+
+
+

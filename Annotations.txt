@@ -35,3 +35,13 @@ MVC
 		
 		return "student-confirmation";
 	}
+
+Validation rules (Hibernate?)
+@NotNull(message="message for errore")
+@Size(min=1, messge="message for errore")
+@Valid используется в ...
+public String processForm(@Valid @ModelAttribute("customer") Customer theCustomer,
+			BindingResult theBindingResult)
+
+
+@InitBinder препроцесор который пропускает через себя строки
