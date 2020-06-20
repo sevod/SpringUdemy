@@ -625,3 +625,188 @@ MVC 93
 ${student.firstName} ${student.lastName}  данные конструкции обращаются к методам класса Student
 
 -----------------------------------------------
+
+MVC 94
+
+Drop Down List
+
+MVC 95
+
+Правим вью страницу student-form
+
+		<form:select path="country">
+		
+			<form:option value="Brazil" label="Brazil" />
+			<form:option value="France" label="France" />
+			<form:option value="Germany" label="Germany" />
+			<form:option value="India" label="India" />
+		
+		</form:select>
+		
+В клас Student добавляем country и get и set методы
+
+В страницу student-confirmation добавляем
+Country: ${student.country}
+
+MVC 96
+
+сделаем добавлаение списка, из кода
+
+в Student добавляем поле private LinkedHashMap<String, String> countryOptions;
+
+Правим форму в student-form
+
+		<form:select path="country">
+		
+			<form:options items="${student.countryOptions}" />
+		
+		</form:select>
+
+-----------------------------------------------
+
+MVC 97
+
+Radio Buttons
+
+MVC 98
+
+Изменяем student-form
+
+		Java <form:radiobutton path="favoriteLanguage" value="Java"/>
+		C# <form:radiobutton path="favoriteLanguage" value="C#"/>
+		PHP <form:radiobutton path="favoriteLanguage" value="PHP"/>
+		Ruby <form:radiobutton path="favoriteLanguage" value="Ruby"/>
+		
+добавляем в класс Student строку private String favoriteLanguage;
+и создаем get and set methods
+
+обновляем вью student-confirmation
+Favorite Language: ${student.favoriteLanguage}
+
+-------------------------------------------------------
+
+MVC 99
+
+Check Box
+
+MVC 100
+
+Изменяем student-form
+
+		Operating Systems:
+		
+		Linux <form:checkbox path="operationgSystems" value="Linux"/>
+		Mac OS <form:checkbox path="operationgSystems" value="Mac OS"/>
+		MS Windows <form:checkbox path="operationgSystems" value="MS Windows"/>
+		
+
+добавляем в класс Student строку 
+private String[] operationgSystems;
+
+	
+В student-confirmation добавляем код
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
+	Operating Systems
+	
+	<ul>
+		<c:forEach var="temp" items="${student.operationgSystems}">
+			<li>${temp}</li>
+		</c:forEach>
+	</ul>
+	
+MVC 101
+
+--------------------------------------
+
+20.06.2020
+
+MVC 102
+
+Spring Form Validation
+----------------------------
+
+MVC 103
+
+Java's standard Bean Validation API
+Будем использовать Hibernate
+
+MVC 104
+
+www.hibernate.org
+Hibernate Validator - скачиваем
+копируем из архива файлы в наш проект
+
+MVC 105
+
+Validation rule
+
+@NotNull(message="message for errore")
+@Size(min=1, messge="message for errore")
+private String lastName;
+
+в html добавляем
+<form:errors path="lastName" cssClass="error" />
+
+так же меняется "возвратная страница" /processForm, в ней можно контролировать ошибку тегом @Valid
+
+MVC 106
+
+Создаем новый класс Customer
+в нем анотации
+
+	@NotNull(message="is required")
+	@Size(min=1)	
+	private String lastName;
+
+MVC 107
+
+создаем новое вью customer-form
+
+MVC 108
+
+Создаем новый класс CustomerController
+
+
+MVC 109
+
+Дописываем CustomerController
+	
+	@RequestMapping("/processForm")
+	public String processForm(
+			@Valid @ModelAttribute("customer") Customer theCustomer,
+			BindingResult theBindingResult) {
+		
+		if (theBindingResult.hasErrors()) {
+			return "customer-form";
+		}else {
+			return "customer-confirmation";			
+		}
+		
+	}
+
+
+MVC 110
+
+создаем customer-confirmation.jsp
+
+MVC 111
+
+Problem white space
+
+MVC 112
+
+@InitBinder
+
+MVC 113
+
+добавляем код который будет удалять пробелы
+
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+	}
+
+---------------------------------------
+
