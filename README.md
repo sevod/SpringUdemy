@@ -865,3 +865,31 @@ Integer Field Requered
 Так же меняем int на Integer
 
 ----------------------------------------------------------------
+
+MVC 119
+
+String input for Integer Field
+
+у нас есть проблемы если в числовое поле вводить строку
+
+создадим новую папку resources
+создадим новый файл messages.properties
+в этом файле прописываем правила обработки ошибок
+
+MVC 120
+
+расположение и заполнение данного файла принципиально!
+
+правим spring-mvc-demo-servlet.xml файл
+
+	<!-- Load custom message resources -->
+	
+	<bean id="messageSource"
+		class="org.springframeworkcontext.support.ResourceBundleMessageSource">
+		
+		<property name="basenames" value="resources/messages"></property>
+	
+	</bean>
+
+----------------------------------------
+
