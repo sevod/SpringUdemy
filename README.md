@@ -811,5 +811,27 @@ MVC 113
 ---------------------------------------
 
 
+21.06.2020
 
+MVC 114
+
+Validate a Number
+
+@Min
+@Max
+
+MVC 115
+
+Правим Customer.java
+
+	@Min(value=0, message="must be greater then or equal to zero")
+	@Max(value=0, message="must be less then or equal to 10")
+	private int freePasses;
+
+Правим customer-form.jsp
+	
+	Free passes: <form:input path="freePasses"/>
+	<form:errors path="freePasses" cssClass="error" />
+	
+-------------------------------------------------------
 
