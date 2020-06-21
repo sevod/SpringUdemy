@@ -890,6 +890,12 @@ MVC 120
 		<property name="basenames" value="resources/messages"></property>
 	
 	</bean>
+	
+MVC 121
+
+Если в CustomerController добавить строку, то мы в сообщении увидим те названия которые можно использовать в файле выше (messages.properties)
+
+		System.out.println(theBindingResult);
 
 ----------------------------------------
 

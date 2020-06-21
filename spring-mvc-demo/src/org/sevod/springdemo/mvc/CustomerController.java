@@ -42,6 +42,8 @@ public class CustomerController {
 			@Valid @ModelAttribute("customer") Customer theCustomer,
 			BindingResult theBindingResult) {
 		
+		System.out.println(theBindingResult);
+		
 		if (theBindingResult.hasErrors()) {
 			return "customer-form";
 		}else {
