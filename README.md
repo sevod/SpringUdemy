@@ -852,3 +852,16 @@ MVC 117
 		<form:errors path="postalCode" cssClass="error" />
 		
 -----------------------------------------------------------
+
+MVC 118
+
+Integer Field Requered
+
+Правим Customer.java
+Добавляем на нужные поля
+
+	@NotNull(message="is required")
+
+Так же меняем int на Integer
+
+----------------------------------------------------------------
