@@ -810,3 +810,92 @@ MVC 113
 
 ---------------------------------------
 
+
+21.06.2020
+
+MVC 114
+
+Validate a Number
+
+@Min
+@Max
+
+MVC 115
+
+Правим Customer.java
+
+	@Min(value=0, message="must be greater then or equal to zero")
+	@Max(value=0, message="must be less then or equal to 10")
+	private int freePasses;
+
+Правим customer-form.jsp
+	
+	Free passes: <form:input path="freePasses"/>
+	<form:errors path="freePasses" cssClass="error" />
+	
+-------------------------------------------------------
+
+MVC 116
+
+Regular Expressions Validation
+
+MVC 117
+
+Правим Customer.java
+
+	@Pattern(regexp="^[a-zA-Z0-9]{5}", message="only 5 chars/digits")
+	private String postalCode;
+	
+Правим customer-form.jsp
+		
+		Postal Code: <form:input path="postalCode"/>
+		<form:errors path="postalCode" cssClass="error" />
+		
+-----------------------------------------------------------
+
+MVC 118
+
+Integer Field Requered
+
+Правим Customer.java
+Добавляем на нужные поля
+
+	@NotNull(message="is required")
+
+Так же меняем int на Integer
+
+----------------------------------------------------------------
+
+MVC 119
+
+String input for Integer Field
+
+у нас есть проблемы если в числовое поле вводить строку
+
+создадим новую папку resources
+создадим новый файл messages.properties
+в этом файле прописываем правила обработки ошибок
+
+MVC 120
+
+расположение и заполнение данного файла принципиально!
+
+правим spring-mvc-demo-servlet.xml файл
+
+	<!-- Load custom message resources -->
+	
+	<bean id="messageSource"
+		class="org.springframeworkcontext.support.ResourceBundleMessageSource">
+		
+		<property name="basenames" value="resources/messages"></property>
+	
+	</bean>
+	
+MVC 121
+
+Если в CustomerController добавить строку, то мы в сообщении увидим те названия которые можно использовать в файле выше (messages.properties)
+
+		System.out.println(theBindingResult);
+
+----------------------------------------
+
