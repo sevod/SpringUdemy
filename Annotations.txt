@@ -48,3 +48,5 @@ public String processForm(@Valid @ModelAttribute("customer") Customer theCustome
 
 @Min
 @Max
+
+@Pattern(regexp="^[a-zA-Z0-9] {5}", message="only 5 chars/digits") - задаем паттерн регулярного выражения

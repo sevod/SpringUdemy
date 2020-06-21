@@ -835,3 +835,20 @@ MVC 115
 	
 -------------------------------------------------------
 
+MVC 116
+
+Regular Expressions Validation
+
+MVC 117
+
+Правим Customer.java
+
+	@Pattern(regexp="^[a-zA-Z0-9]{5}", message="only 5 chars/digits")
+	private String postalCode;
+	
+Правим customer-form.jsp
+		
+		Postal Code: <form:input path="postalCode"/>
+		<form:errors path="postalCode" cssClass="error" />
+		
+-----------------------------------------------------------
