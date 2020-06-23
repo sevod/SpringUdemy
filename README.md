@@ -967,24 +967,91 @@ H135
 
 Test JDBC connection
 
-JDBC - Java Database Connectivity
+JDBC - Java Database Connectivity 
 
 Создадим новый пакет и класс TestJdbc для теста
 
 H136
 
+------------------------------------------------
 
 H137
 
 Создаем hibernate.cfg.xml файл.
 
-------------------------------------------------
 
 H138
 
 Hibernate Annotations
 
+Entity Class
+@Entity
+@Table(name="student")		//в данном случае student не обязательно, поскольку совпадает с классом. если не указать возмет из класса
+public class Student{
 
+	@Id
+	@Column(name="id")
+	private int id;
+	
+	@Column(name="first_name")
+	private String firstName;
+
+}
+
+H139
+
+Создадим класс Student в нем пропишем все что нужно для связи hibernate с sql
+
+H140
+
+Creating and Saving Java Objects
+
+H141
+
+Создадим новый класс и новый пакет CreateStudentDemo
+
+в hibernate существует два понятия
+-session factory
+-session
+
+		// create session factory
+		SessionFactory factory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Student.class)
+				.buildSessionFactory();
+				
+"hibernate.cfg.xml" путь к конфигурационому файлу, при отсутствии идет в дефолный путь 
+addAnnotatedClass(Student.class) указываем "map" класс, в котором описано все взаимодействие с hibernate
+
+Создаем сесию 
+	// create session
+	Session session = factory.getCurrentSession();
+	
+Делаем запись
+
+	try {
+			// use the session object to save Java object
+			System.out.println("Creating new student object... ");
+			Student tempStudent = new Student("Paul", "Wall", "paul@sevod.org");
+			
+			// create a student object			
+			session.beginTransaction();
+			
+			// save the student object
+			System.out.println("Saving the student...");
+			session.save(tempStudent);
+			
+			// commit transaction
+			session.getTransaction().commit();
+			
+			System.out.println("Done!");
+				
+			
+		} finally {
+			factory.close();
+		}
+		
+---------------------------------------------------------------
 
 
 	
