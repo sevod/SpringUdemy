@@ -899,3 +899,156 @@ MVC 121
 
 ----------------------------------------
 
+MVC 122
+
+Custom Form Validation
+
+наша будущая анотоция будет выглядеть примерно так:
+	
+	@CourseCode(value="LUV", message="must start with LUV")
+
+MVC 123
+
+Для определения своей собсвенной анотации используем код
+
+	@Constraint(validatedBy = CourseCodeConstaintValidator.clss) //вспомогательный класс где будет наша логика
+	@Target({ElementType.METHOD, ElementType.FIELD}) //тип анотации метод или поле
+	@Retention(RetentionPolicy.RUNTIME) //время жизни анотации
+	public @interface CourseCode { //	где @interface это специальная анотация, а CourseCode название нашей анотации
+		
+		//два метода внутри нашей будущей анотации
+		public String value() default "LUV";
+		
+		public String message() default "must start with LUV"
+		}
+		
+------------------------------------------------------------
+
+#Hibernate
+----------
+
+22.06.2020
+	
+H129
+
+H130
+
+JDBC - Java Database Connectivity
+
+H131
+
+H132
+
+Instal MySQL
+
+23.06.3030
+
+H133
+
+Загружаем данные из файла в скл
+
+hbstudent
+hbstudent
+
+H134
+
+Setting up Hibernate in Eclipse
+
+Hibernate ORM
+
+ORM - Object-Relational Mapping
+
+Качаем хайбернейт с сайта
+
+качаем драйвер sql с dev.mysql.com Connector/J Platfrom Independent
+
+
+H135
+
+Test JDBC connection
+
+JDBC - Java Database Connectivity 
+
+Создадим новый пакет и класс TestJdbc для теста
+
+H136
+
+------------------------------------------------
+
+H137
+
+Создаем hibernate.cfg.xml файл.
+
+
+H138
+
+Hibernate Annotations
+
+Entity Class
+@Entity
+@Table(name="student")		//в данном случае student не обязательно, поскольку совпадает с классом. если не указать возмет из класса
+public class Student{
+
+	@Id
+	@Column(name="id")
+	private int id;
+	
+	@Column(name="first_name")
+	private String firstName;
+
+}
+
+H139
+
+Создадим класс Student в нем пропишем все что нужно для связи hibernate с sql
+
+H140
+
+Creating and Saving Java Objects
+
+H141
+
+Создадим новый класс и новый пакет CreateStudentDemo
+
+в hibernate существует два понятия
+-session factory
+-session
+
+		// create session factory
+		SessionFactory factory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Student.class)
+				.buildSessionFactory();
+				
+"hibernate.cfg.xml" путь к конфигурационому файлу, при отсутствии идет в дефолный путь 
+addAnnotatedClass(Student.class) указываем "map" класс, в котором описано все взаимодействие с hibernate
+
+Создаем сесию 
+	// create session
+	Session session = factory.getCurrentSession();
+	
+Делаем запись
+
+	try {
+			// use the session object to save Java object
+			System.out.println("Creating new student object... ");
+			Student tempStudent = new Student("Paul", "Wall", "paul@sevod.org");
+			
+			// create a student object			
+			session.beginTransaction();
+			
+			// save the student object
+			System.out.println("Saving the student...");
+			session.save(tempStudent);
+			
+			// commit transaction
+			session.getTransaction().commit();
+			
+			System.out.println("Done!");
+				
+			
+		} finally {
+			factory.close();
+		}
+		
+---------------------------------------------------------------
