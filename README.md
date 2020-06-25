@@ -1053,5 +1053,44 @@ addAnnotatedClass(Student.class) указываем "map" класс, в кот�
 		
 ---------------------------------------------------------------
 
+25.06.2020
 
-	
+H142
+
+Primary keys
+
+@ID
+@GeneratedValue(strategy=GenerationType.IDENTITY) //указываем в явном виде стратегию для ID в БД
+
+Типы GenerationType
+
+AUTO
+IDENTITY
+SEQUENCE
+TABLE
+
+Можно вручную создать стратегию для гернерации ID
+
+H143
+
+Обьяснение внутренностей mySql
+
+Правим класс Student
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+Создаем PrimaryKeyDemo
+
+H144
+
+Changing the Starting index
+
+очистить таблицу
+truncate hb_student_tracker.student
+
+---------------------------------
+
+
+
+
+
+

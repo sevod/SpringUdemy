@@ -50,3 +50,17 @@ public String processForm(@Valid @ModelAttribute("customer") Customer theCustome
 @Max
 
 @Pattern(regexp="^[a-zA-Z0-9] {5}", message="only 5 chars/digits") - задаем паттерн регулярного выражения
+
+
+Hibernate
+-----------
+
+Обявляем класс который будем использовать в hibernate
+@Entity
+@Table(name="student")
+public class Student {....
+student имя таблицы в БД
+	
+@Id	//- данное поле будет Primery key (разумеется только одно на таблицу)
+@Column(name="id")  //наименование колонки в БД
+private int id;
