@@ -1089,14 +1089,45 @@ truncate hb_student_tracker.student
 
 ---------------------------------
 
+27.06.2020
 
 H145 
 
 Hibernate Reading Objects
 
+Создадим ReadStudentDemo. Все опыты проведм в нем
+
+Student myStudent = session.get(Student.class, tempStudent.getId());
+
 ----------------------------------------
 
+H146
 
+Querying Objects with Hibernate
+
+HQL - Hibernate Query Language
+
+H147
+
+Создадим класс QueryStudentDemo
+
+Получаем список всех студентов
+
+	List<Student> theStudents = session.createQuery("from Student").list(); 
+	
+Список студентов у которых lastName = 'Doe'
+	
+	theStudents = session.createQuery("from Student s where s.lastName='Doe'").list();
+	
+H148
+
+	theStudents = session.createQuery("from Student s where s.lastName='Doe' or s.firstName='Daffy'").getResultList();
+	
+	theStudents = session.createQuery("from Student s where s.email LIKE '%sevod.org'").getResultList();
+	
+------------------------------------------------
+
+	
 
 
 

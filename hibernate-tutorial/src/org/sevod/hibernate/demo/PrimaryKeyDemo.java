@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.sevod.hibernate.demo.entity.Student;
 
+
+
 public class PrimaryKeyDemo {
 
 	public static void main(String[] args) {
