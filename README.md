@@ -1127,7 +1127,27 @@ H148
 	
 ------------------------------------------------
 
+H149
+
+Updating Objects Hibernate
+
+H150
+
+Создаем класс UpdateStudentDemo
+
+Update выполняем просто методом set класса после чего делаем 
+
+//commit the transaction
+session.getTransaction().commit();	
 	
+можно выполнить групповое обновление с помощью HQL
+
+			//update email for all students			
+			session.createQuery("update Student set email='foo@gmail.com'")
+				.executeUpdate();	
+				
+-----------------------------------------------------------------
+
 
 
 
