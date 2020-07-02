@@ -1137,8 +1137,8 @@ H150
 
 Update выполняем просто методом set класса после чего делаем 
 
-//commit the transaction
-session.getTransaction().commit();	
+	myStudent.setFirstName("Scooby");
+
 	
 можно выполнить групповое обновление с помощью HQL
 
@@ -1148,6 +1148,19 @@ session.getTransaction().commit();
 				
 -----------------------------------------------------------------
 
+H151
 
+Deleting Objects Hibernate
 
+H152
 
+Создаем клас DeleteStudentDemo
+
+	// delete the student
+	session.delete(myStudent);
+			
+Удаление через HQL
+	// delete the student HQL			
+	session.createQuery("delete from Student where id=2").executeUpdate();
+
+------------------------------------------------------------
