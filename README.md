@@ -1127,6 +1127,8 @@ H148
 	
 ------------------------------------------------
 
+02.07.2020
+
 H149
 
 Updating Objects Hibernate
@@ -1137,8 +1139,8 @@ H150
 
 Update выполняем просто методом set класса после чего делаем 
 
-//commit the transaction
-session.getTransaction().commit();	
+	myStudent.setFirstName("Scooby");
+
 	
 можно выполнить групповое обновление с помощью HQL
 
@@ -1147,3 +1149,109 @@ session.getTransaction().commit();
 				.executeUpdate();	
 				
 -----------------------------------------------------------------
+
+H151
+
+Deleting Objects Hibernate
+
+H152
+
+Создаем клас DeleteStudentDemo
+
+	// delete the student
+	session.delete(myStudent);
+			
+Удаление через HQL
+	// delete the student HQL			
+	session.createQuery("delete from Student where id=2").executeUpdate();
+
+------------------------------------------------------------
+
+H153 
+
+Advanced Mappings
+	-Multiple Tables
+	-Relationships between Tables
+	
+H154
+	
+Database concepts
+
+	-Primary key - id для строки
+	-Foreign key - для перелинковки таблиц, поле в табилице которое ссылается на primaty key другой таблицы
+
+	-cascade применяемое к одной таблице, применяется ко всем связанным таблицам
+		-cascade delete
+
+H155
+
+OneToOne Hibernate
+
+H156
+
+H157
+
+CascadeType
+
+@OneToOne(cascade=CascadeType.ALL)
+
+@OneToOne(cascade={CascadeType.DETACH,
+					CascadeType.MERGE,
+					CascadeType.PERSIST,
+					CascadeType.REFRESH,
+					CascadeType.REMOVE})
+
+
+06.07.2020
+
+H158
+
+Создаем структуру ДБ	
+
+Database -> Reversengineer			
+
+H159
+
+Копипастом создаем новую базу
+
+hb-01-one-to-one-uni
+
+Поправим настройки подключения. Переподключим все в новую базу hb-01-one-to-one-uni
+
+Правим файл hibernate.cfg.xml
+
+H160
+
+Создаем и настраиваем InstrucorDetail class
+
+H161
+
+Создаем и настраиваем Instrucor class
+
+Для установки взаимоотношений с классом InstrucorDetail создаем следующиюу конструкцию
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "instructor_detail_id")
+	private InstructorDetail instructorDetail;
+
+H162
+
+Все действия ведем в CreateDemo
+
+создаем Instrucor и InstructorDetail
+
+Для их асоциации создаем конструкцию 
+
+	// associate the objects			
+	tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+H163
+
+Для сохранения в БД используем код
+
+	// save the instructor			
+	session.save(tempInstructor);
+	
+этот же код сохранит и tempInstructorDetail, поскольку у нас эти классы связаны в видео H161
+
+-----------------------------------------
