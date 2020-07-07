@@ -1256,16 +1256,62 @@ H163
 
 -----------------------------------------
 
+07.07.2020
+
 H164
 
 OneToOne Delete
 
 Создаем класс DeleteDemo
 
-Находим по id инструктора и удаляем
+Находим по id инструктора и удаляем 
 
 	session.delete(tempInstructor);
 	
 Автоматически удалится и связанная информация
 
 ---------------------------------------
+
+H165
+
+OneToOne Bi-Directional
+
+	//вроде как с помощью этой конструкции мы свзываем поля с классом Instructor
+	@OneToOne(mappedBy="instructorDetail", cascade=CascadeType.ALL)  
+	private Instrucor instructor;
+	
+	Общий смысл, с помощью связи полей, мы в классе InstrucorDetail можем получать Instrucor из другого класса, без каких либо запросов к БД.
+	
+H166
+
+Копипастом создаем новый проект
+
+hb-01-one-to-one-bi
+
+Изменим InstructorDetail class
+
+	//add new field for instructor	
+	@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+	private Instructor instructor;
+	
+так же добавляем гетор и сетор для нового поля
+
+H167
+
+Создаем класс GetInstructorDetailDemo
+
+Пишем пример.
+
+Общий смысл, с помощью связи полей, мы в классе InstrucorDetail можем получать Instrucor из другого класса, без каких либо запросов к БД.
+
+H168
+
+Refactoring 
+
+добавляем исключения
+
+--------------------------------------
+
+
+
+
