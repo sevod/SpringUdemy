@@ -1312,6 +1312,30 @@ Refactoring
 
 --------------------------------------
 
+08.07.2020
+
+H169
+
+OneToOne Bi-Directional Cascade Delete
+
+Создаем DeleteInstructorDetailDemo для дальнейшей работы
+
+Добавляем строку
+
+	session.delete(tempInstructorDetail);
+
+при удалении InstrucorDetail так же удаляется Instructor, поскольку они связаны
+
+-------------------------------------------
+
+H170
+
+OneToOne Bi-Directional  Delete Only InstructorDetail
+
+
+
+
+
 
 
 

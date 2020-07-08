@@ -64,3 +64,13 @@ student имя таблицы в БД
 @Id	//- данное поле будет Primery key (разумеется только одно на таблицу)
 @Column(name="id")  //наименование колонки в БД
 private int id;
+
+//для связи полей разных таблиц
+//InstructorDetail это другая таблица
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "instructor_detail_id")
+private InstructorDetail instructorDetail;
+
+//если нужна двунаправленность.
+@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+private Instructor instructor;
