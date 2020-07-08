@@ -1311,3 +1311,51 @@ Refactoring
 добавляем исключения
 
 --------------------------------------
+
+08.07.2020
+
+H169
+
+OneToOne Bi-Directional Cascade Delete
+
+Создаем DeleteInstructorDetailDemo для дальнейшей работы
+
+Добавляем строку
+
+	session.delete(tempInstructorDetail);
+
+при удалении InstrucorDetail так же удаляется Instructor, поскольку они связаны
+
+-------------------------------------------
+
+H170
+
+OneToOne Bi-Directional  Delete Only InstructorDetail
+
+В классе InstructorDetail меняем
+
+	CascadeType.ALL на
+	
+	//add new field for instructor	
+	@OneToOne(mappedBy = "instructorDetail", 
+			cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	private Instructor instructor;
+
+Выбираем все, кроме удаления
+
+Перед удалением нужно разорвать связь с другой таблицей
+
+	//remove the associated object reference
+	tempInstructorDetail.getInstructor().setInstructorDetail(null); 			
+			
+H171
+
+--------------------------------------
+
+H172
+
+OneToMany Bi-Directional
+
+Создаем новую таблицу SQL
+
+H173
