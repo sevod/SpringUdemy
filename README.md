@@ -1332,6 +1332,26 @@ H170
 
 OneToOne Bi-Directional  Delete Only InstructorDetail
 
+В классе InstructorDetail меняем
+
+	CascadeType.ALL на
+	
+	//add new field for instructor	
+	@OneToOne(mappedBy = "instructorDetail", 
+			cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	private Instructor instructor;
+
+Выбираем все, кроме удаления
+
+Перед удалением нужно разорвать связь с другой таблицей
+
+	//remove the associated object reference
+	tempInstructorDetail.getInstructor().setInstructorDetail(null); 			
+			
+H171
+
+--------------------------------------
+
 
 
 

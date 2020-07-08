@@ -14,7 +14,7 @@ public class DeleteInstructorDetailDemo {
 		SessionFactory factory = new Configuration()
 				.configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Instructor.class)
-				.addAnnotatedClass(InstructorDetail.class)
+				.addAnnotatedClass(InstructorDetail.class) 
 				.buildSessionFactory();
 		
 		// create session
@@ -26,7 +26,7 @@ public class DeleteInstructorDetailDemo {
 			session.beginTransaction();		
 			
 			// get the instructor detail object			
-			int theId = 4;
+			int theId = 6;
 			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theId);
 			
 			// print the instructor detail			
@@ -37,6 +37,10 @@ public class DeleteInstructorDetailDemo {
 			
 			// now let's delete the instructor detail				
 			System.out.println("Deleting tempInstructorDetail: " + tempInstructorDetail);	
+			
+			//remove the associated object reference
+			tempInstructorDetail.getInstructor().setInstructorDetail(null);
+			
 			session.delete(tempInstructorDetail);				
 				
 			// commit transaction
